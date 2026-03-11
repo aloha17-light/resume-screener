@@ -31,6 +31,7 @@
             --shape-blur: 60px;
             --shape-opacity: 1;
             --shape-animation: none;
+            --footer-bg: #0a1f1a;
         }
 
         body.student-mode {
@@ -54,6 +55,7 @@
             --shape-blur: 80px;
             --shape-opacity: 1;
             --shape-animation: shapeFloat 14s ease-in-out infinite;
+            --footer-bg: #12123a;
         }
 
         /* ========== BASE ========== */
@@ -952,11 +954,11 @@
             color: var(--primary-color);
         }
 
-        /* ========== ABOUT SECTION ========== */
+        /* ========== ABOUT SECTION (Showcase Style) ========== */
         .about-section {
-            max-width: 720px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 3rem 1.25rem 4rem;
+            padding: 4rem 1.25rem 3rem;
             position: relative;
             z-index: 1;
         }
@@ -965,42 +967,684 @@
             width: 48px;
             height: 2px;
             background: var(--primary-color);
-            opacity: 0.25;
-            margin: 0 auto 2.5rem;
+            opacity: 0.3;
+            margin: 0 auto 3rem;
             border-radius: 1px;
         }
 
-        .about-content {
-            text-align: center;
+        .about-layout {
+            display: flex;
+            align-items: center;
+            gap: 3.5rem;
+        }
+
+        .about-text {
+            flex: 1;
+            max-width: 420px;
+        }
+
+        .about-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 0.6rem;
         }
 
         .about-heading {
-            font-size: 1.85rem;
+            font-size: 1.65rem;
             font-weight: 700;
             letter-spacing: -0.02em;
-            color: var(--text-color);
-            margin-bottom: 1rem;
             line-height: 1.25;
+            color: var(--text-color);
+            margin-bottom: 0.75rem;
         }
 
         .about-desc {
-            font-size: 0.925rem;
+            font-size: 0.9rem;
             color: var(--muted);
-            line-height: 1.75;
-            max-width: 600px;
-            margin: 0 auto 1.75rem;
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
         }
 
-        .about-subheading {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.01em;
+        .about-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .about-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .about-card {
+            flex: 1;
+            max-width: 440px;
+        }
+
+        .mission-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.75rem;
+            box-shadow:
+                0 2px 4px rgba(0,0,0,0.03),
+                0 8px 24px rgba(0,0,0,0.04),
+                0 16px 48px rgba(0,0,0,0.02);
+            transition: box-shadow 0.3s ease, background 0.4s ease;
+        }
+
+        .mission-card:hover {
+            box-shadow:
+                0 2px 6px rgba(0,0,0,0.04),
+                0 12px 32px rgba(0,0,0,0.06),
+                0 20px 56px rgba(0,0,0,0.03);
+        }
+
+        .mission-card-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .mission-card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
             color: var(--text-color);
             margin-bottom: 0.6rem;
         }
 
-        .about-mission {
-            margin-top: 0.5rem;
+        .mission-card-text {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .mission-card-divider {
+            width: 32px;
+            height: 2px;
+            background: var(--primary-color);
+            opacity: 0.3;
+            margin: 1.25rem 0;
+            border-radius: 1px;
+        }
+
+        .mission-card-quote {
+            font-size: 0.82rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-style: italic;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .about-layout {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .about-text { max-width: 100%; }
+            .about-card { max-width: 100%; }
+        }
+
+        /* ========== DATA EXTRACTION GRID ========== */
+        .extraction-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4.5rem 1.5rem 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-center-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-center-heading {
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            line-height: 1.25;
+        }
+
+        .section-center-subtitle {
+            font-size: 0.9rem;
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.55;
+        }
+
+        .extraction-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+
+        .extraction-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.875rem;
+            padding: 2.1rem 1.9rem;
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.03),
+                0 4px 12px rgba(0,0,0,0.02);
+            transition: box-shadow 0.3s ease, transform 0.25s ease;
+        }
+
+        .extraction-card:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 4px 12px rgba(0,0,0,0.06),
+                0 12px 32px rgba(0,0,0,0.04);
+        }
+
+        .extraction-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 1.15rem;
+        }
+
+        .extraction-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .extraction-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .extraction-check {
+            color: var(--badge-high);
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .extraction-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .extraction-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ========== AUDIENCE CARDS ========== */
+        .audience-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+
+        .audience-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.875rem;
+            padding: 2rem 1.8rem;
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.03),
+                0 4px 12px rgba(0,0,0,0.02);
+            transition: box-shadow 0.3s ease, transform 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 4px 12px rgba(0,0,0,0.06),
+                0 12px 32px rgba(0,0,0,0.04);
+        }
+
+        .audience-icon-wrap {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.7rem;
+            background: var(--focus-ring);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            margin-bottom: 1.15rem;
+        }
+
+        .audience-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.6rem;
+        }
+
+        .audience-card-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin: 0 0 1.15rem;
+            flex: 1;
+        }
+
+        .audience-card-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap 0.2s ease;
+        }
+
+        .audience-card-link:hover { gap: 0.5rem; }
+
+        @media (max-width: 768px) {
+            .audience-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .audience-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ========== COMPARISON TABLE ========== */
+        .compare-section {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .compare-table-wrap {
+            border: 1px solid var(--border-color);
+            border-radius: 0.875rem;
+            overflow: hidden;
+            background: var(--card-bg);
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.03),
+                0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            padding: 1.15rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .compare-table thead th {
+            background: var(--table-header-bg);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .compare-table thead th:first-child {
+            color: var(--muted);
+        }
+
+        .compare-table thead th.highlight {
+            color: var(--primary-color);
+        }
+
+        .compare-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .compare-table td:first-child {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .compare-table td.highlight-col {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .compare-table td.muted-col {
+            color: var(--muted);
+        }
+
+        .compare-yes { color: var(--badge-high); font-weight: 600; }
+        .compare-no { color: var(--badge-low); opacity: 0.7; }
+        .compare-partial { color: var(--badge-med); }
+
+        /* ========== FOOTER ========== */
+        .site-footer {
+            background: var(--footer-bg);
+            color: rgba(255,255,255,0.75);
+            padding: 4rem 1.5rem 0;
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .footer-brand-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-brand-desc {
+            font-size: 0.84rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+            color: rgba(255,255,255,0.55);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 0.65rem;
+        }
+
+        .footer-social-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .footer-social-icon:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .footer-col-title {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 1.15rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            font-size: 0.84rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-cta-text {
+            font-size: 0.84rem;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 1rem;
+        }
+
+        .footer-cta-btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 2rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            font-family: inherit;
+        }
+
+        .footer-cta-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 1.25rem 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: rgba(255,255,255,0.7);
+        }
+
+        @media (max-width: 768px) {
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 1.75rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+
+        .section-divider {
+            width: 48px;
+            height: 2px;
+            background: var(--primary-color);
+            opacity: 0.3;
+            margin: 0 auto 3rem;
+            border-radius: 1px;
+        }
+
+        /* ========== FAQ MODAL ========== */
+        .faq-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 250;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .faq-overlay.visible {
+            display: flex;
+        }
+
+        .faq-modal {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            width: 100%;
+            max-width: 640px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem 2.25rem;
+            box-shadow:
+                0 12px 40px rgba(0,0,0,0.2),
+                0 24px 80px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.3s ease-out;
+            position: relative;
+        }
+
+        .faq-modal::-webkit-scrollbar { width: 4px; }
+        .faq-modal::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .faq-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.25rem;
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--muted);
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .faq-close:hover { color: var(--text-color); }
+
+        .faq-modal-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-modal-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.35rem;
+        }
+
+        .faq-modal-subtitle {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 1.75rem;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            margin-bottom: 0.65rem;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 0.9rem 1.15rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            font-family: inherit;
+            transition: background 0.15s;
+        }
+
+        .faq-question:hover {
+            background: var(--focus-ring);
+        }
+
+        .faq-arrow {
+            font-size: 0.75rem;
+            color: var(--muted);
+            transition: transform 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 1.15rem 1rem;
+            font-size: 0.84rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 480px) {
+            .faq-modal { padding: 1.5rem; }
         }
 
         /* ========== FADE-IN ANIMATION ========== */
@@ -1159,9 +1803,414 @@
             background: var(--border-color);
             margin: 0 0.25rem;
         }
+
+        /* ========== PAGE LOADER ========== */
+        body.loading {
+            overflow: hidden;
+        }
+
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.75rem;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #page-loader.fade-out {
+            opacity: 0;
+            transform: translateY(-12px);
+            pointer-events: none;
+        }
+
+        .loader-ring {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .loader-ring::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 3px solid var(--border-color);
+        }
+
+        .loader-ring::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--primary-color);
+            border-right-color: var(--primary-color);
+            animation: loaderSpin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .loader-brand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            letter-spacing: -0.02em;
+        }
+
+        .loader-text {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+
+        .loader-bar {
+            width: 120px;
+            height: 3px;
+            background: var(--border-color);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loader-bar-fill {
+            height: 100%;
+            width: 30%;
+            background: var(--primary-color);
+            border-radius: 2px;
+            animation: loaderSlide 1.2s ease-in-out infinite;
+        }
+
+        @keyframes loaderSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes loaderSlide {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(250%); }
+            100% { transform: translateX(400%); }
+        }
+
+        /* ========== CHATBOT WIDGET ========== */
+        .chatbot-fab {
+            position: fixed;
+            bottom: 1.75rem;
+            right: 1.75rem;
+            z-index: 300;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-color);
+            color: var(--btn-text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 4px 14px rgba(0,0,0,0.18),
+                0 8px 32px rgba(0,0,0,0.10);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+        }
+
+        .chatbot-fab:hover {
+            transform: scale(1.08);
+            box-shadow:
+                0 6px 20px rgba(0,0,0,0.22),
+                0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .chatbot-fab.open {
+            transform: rotate(90deg);
+        }
+
+        /* Pulse ring behind FAB */
+        .chatbot-fab::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            opacity: 0;
+            animation: chatPulse 2.5s ease-out infinite;
+        }
+
+        .chatbot-fab.open::before {
+            animation: none;
+            opacity: 0;
+        }
+
+        @keyframes chatPulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        /* Chat Window */
+        .chatbot-window {
+            position: fixed;
+            bottom: 6rem;
+            right: 1.75rem;
+            z-index: 299;
+            width: 380px;
+            max-height: 520px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            box-shadow:
+                0 8px 32px rgba(0,0,0,0.15),
+                0 20px 60px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .chatbot-window.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .chatbot-header {
+            padding: 1rem 1.25rem;
+            background: var(--primary-color);
+            color: var(--btn-text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        .chatbot-header-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .chatbot-header-text {
+            flex: 1;
+        }
+
+        .chatbot-header-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            line-height: 1.2;
+        }
+
+        .chatbot-header-subtitle {
+            font-size: 0.72rem;
+            opacity: 0.75;
+            font-weight: 400;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 1rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            min-height: 280px;
+            max-height: 340px;
+            scroll-behavior: smooth;
+        }
+
+        .chatbot-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 0.65rem 0.9rem;
+            border-radius: 1rem;
+            font-size: 0.84rem;
+            line-height: 1.55;
+            animation: fadeInUp 0.25s ease-out;
+            word-wrap: break-word;
+        }
+
+        .chat-msg.bot {
+            align-self: flex-start;
+            background: var(--bg-color);
+            color: var(--text-color);
+            border-bottom-left-radius: 0.3rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .chat-msg.user {
+            align-self: flex-end;
+            background: var(--primary-color);
+            color: var(--btn-text-color);
+            border-bottom-right-radius: 0.3rem;
+        }
+
+        .chat-msg.bot strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Typing indicator */
+        .chat-typing {
+            align-self: flex-start;
+            display: none;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.65rem 1rem;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            border-bottom-left-radius: 0.3rem;
+        }
+
+        .chat-typing.visible { display: flex; }
+
+        .chat-typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--muted);
+            animation: typingBounce 1.2s ease-in-out infinite;
+        }
+
+        .chat-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+        .chat-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        .chatbot-input-area {
+            padding: 0.75rem 1rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            background: var(--card-bg);
+        }
+
+        .chatbot-input-area input {
+            flex: 1;
+            padding: 0.6rem 0.85rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 2rem;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 0.84rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .chatbot-input-area input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .chatbot-input-area input::placeholder {
+            color: var(--muted);
+        }
+
+        .chatbot-send-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-color);
+            color: var(--btn-text-color);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.15s;
+            flex-shrink: 0;
+        }
+
+        .chatbot-send-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.06);
+        }
+
+        /* Quick suggestion chips */
+        .chat-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            padding: 0 1rem 0.65rem;
+        }
+
+        .chat-suggestion-chip {
+            padding: 0.3rem 0.7rem;
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            font-size: 0.72rem;
+            cursor: pointer;
+            color: var(--muted);
+            background: transparent;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .chat-suggestion-chip:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            background: var(--focus-ring);
+        }
+
+        @media (max-width: 480px) {
+            .chatbot-window {
+                right: 0.75rem;
+                left: 0.75rem;
+                width: auto;
+                bottom: 5.5rem;
+                max-height: 70vh;
+            }
+            .chatbot-fab {
+                bottom: 1rem;
+                right: 1rem;
+                width: 52px;
+                height: 52px;
+            }
+        }
     </style>
 </head>
-<body class="student-mode">
+<body class="student-mode loading">
+
+    <!-- Page Loader -->
+    <div id="page-loader" aria-label="Loading">
+        <div class="loader-ring">
+            <span class="loader-brand">R</span>
+        </div>
+        <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+        <span class="loader-text">Loading</span>
+    </div>
 
     <!-- Top Gradient Shape -->
     <div class="gradient-shape" aria-hidden="true"></div>
@@ -1421,22 +2470,402 @@
         </div>
     </section>
 
-    <!-- ========== ABOUT SECTION ========== -->
-    <section id="about" class="about-section" aria-label="About ResumeAI">
-        <div class="about-divider"></div>
-        <div class="about-content fade-in">
-            <h2 class="about-heading">About ResumeAI</h2>
-            <p class="about-desc">
-                ResumeAI is an intelligent resume analysis platform that bridges the gap between job seekers and recruiters. Powered by advanced AI, it delivers instant ATS compatibility scoring, keyword optimization, and actionable feedback — helping candidates land interviews and helping recruiters find the right talent faster.
-            </p>
-            <div class="about-mission">
-                <h3 class="about-subheading">Our Mission</h3>
-                <p class="about-desc">
-                    We believe hiring should be smarter, faster, and fairer. Our mission is to leverage AI to eliminate guesswork from the resume screening process — empowering students to present their best selves and enabling recruiters to make confident, data-driven decisions.
-                </p>
+    <!-- ========== DATA EXTRACTION SECTION ========== -->
+    <section class="extraction-section" aria-label="What ResumeAI analyzes">
+        <div class="section-divider"></div>
+        <div class="section-center-header fade-in">
+            <h2 class="section-center-heading">Comprehensive Resume Analysis</h2>
+            <p class="section-center-subtitle">Our AI extracts and evaluates every key aspect of your resume to maximize your chances.</p>
+        </div>
+        <div class="extraction-grid fade-in">
+            <div class="extraction-card">
+                <div class="extraction-card-title">Contact & Identity</div>
+                <ul class="extraction-list">
+                    <li><span class="extraction-check">✓</span> Full name</li>
+                    <li><span class="extraction-check">✓</span> Email address</li>
+                    <li><span class="extraction-check">✓</span> Phone number</li>
+                    <li><span class="extraction-check">✓</span> LinkedIn URL</li>
+                    <li><span class="extraction-check">✓</span> Location</li>
+                    <li><span class="extraction-check">✓</span> Portfolio links</li>
+                </ul>
+            </div>
+            <div class="extraction-card">
+                <div class="extraction-card-title">Work Experience</div>
+                <ul class="extraction-list">
+                    <li><span class="extraction-check">✓</span> Job titles</li>
+                    <li><span class="extraction-check">✓</span> Company names</li>
+                    <li><span class="extraction-check">✓</span> Employment dates</li>
+                    <li><span class="extraction-check">✓</span> Responsibilities</li>
+                    <li><span class="extraction-check">✓</span> Achievements</li>
+                    <li><span class="extraction-check">✓</span> Action verb usage</li>
+                </ul>
+            </div>
+            <div class="extraction-card">
+                <div class="extraction-card-title">Education</div>
+                <ul class="extraction-list">
+                    <li><span class="extraction-check">✓</span> Degrees</li>
+                    <li><span class="extraction-check">✓</span> Institutions</li>
+                    <li><span class="extraction-check">✓</span> Graduation dates</li>
+                    <li><span class="extraction-check">✓</span> GPA</li>
+                    <li><span class="extraction-check">✓</span> Majors / Minors</li>
+                    <li><span class="extraction-check">✓</span> Certifications</li>
+                </ul>
+            </div>
+            <div class="extraction-card">
+                <div class="extraction-card-title">Skills & Expertise</div>
+                <ul class="extraction-list">
+                    <li><span class="extraction-check">✓</span> Technical skills</li>
+                    <li><span class="extraction-check">✓</span> Soft skills</li>
+                    <li><span class="extraction-check">✓</span> Languages</li>
+                    <li><span class="extraction-check">✓</span> Tools & software</li>
+                    <li><span class="extraction-check">✓</span> Proficiency levels</li>
+                    <li><span class="extraction-check">✓</span> Years of experience</li>
+                </ul>
             </div>
         </div>
     </section>
+
+    <!-- ========== BUILT FOR EVERYONE ========== -->
+    <section class="audience-section" aria-label="Who ResumeAI is for">
+        <div class="section-divider"></div>
+        <div class="section-center-header fade-in">
+            <h2 class="section-center-heading">Built for Everyone</h2>
+            <p class="section-center-subtitle">Whether you're a student, job seeker, recruiter, or HR team — ResumeAI scales with your needs.</p>
+        </div>
+        <div class="audience-grid fade-in">
+            <div class="audience-card">
+                <div class="audience-icon-wrap">🎓</div>
+                <div class="audience-card-title">For Students</div>
+                <p class="audience-card-desc">Optimize your first resume for ATS systems. Get AI-powered feedback tailored to entry-level roles and internships.</p>
+                <a class="audience-card-link" onclick="switchMode('student')" style="cursor:pointer">Try Student Mode →</a>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon-wrap">💼</div>
+                <div class="audience-card-title">For Job Seekers</div>
+                <p class="audience-card-desc">Tailor your resume to any role. Identify missing keywords and skill gaps before you apply.</p>
+                <a class="audience-card-link" onclick="switchMode('student')" style="cursor:pointer">Analyze Resume →</a>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon-wrap">🔍</div>
+                <div class="audience-card-title">For Recruiters</div>
+                <p class="audience-card-desc">Screen candidates 10x faster with AI-powered parsing. Score and rank resumes against your job description.</p>
+                <a class="audience-card-link" onclick="switchMode('recruiter')" style="cursor:pointer">Try Recruiter Mode →</a>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon-wrap">🏢</div>
+                <div class="audience-card-title">For HR Teams</div>
+                <p class="audience-card-desc">Streamline your hiring pipeline. Make data-driven decisions with skill-match scoring and candidate analytics.</p>
+                <a class="audience-card-link" onclick="switchMode('recruiter')" style="cursor:pointer">Get Started →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COMPARISON TABLE ========== -->
+    <section class="compare-section" aria-label="How ResumeAI compares">
+        <div class="section-divider"></div>
+        <div class="section-center-header fade-in">
+            <h2 class="section-center-heading">How ResumeAI Compares</h2>
+            <p class="section-center-subtitle">See how ResumeAI stacks up against traditional resume review methods.</p>
+        </div>
+        <div class="compare-table-wrap fade-in">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th class="highlight">ResumeAI</th>
+                        <th>Manual Review</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ATS Compatibility Check</td>
+                        <td class="highlight-col"><span class="compare-yes">✓ Yes</span></td>
+                        <td class="muted-col"><span class="compare-no">✗ No</span></td>
+                    </tr>
+                    <tr>
+                        <td>Instant Feedback</td>
+                        <td class="highlight-col"><span class="compare-yes">✓ Seconds</span></td>
+                        <td class="muted-col"><span class="compare-no">✗ Days</span></td>
+                    </tr>
+                    <tr>
+                        <td>Keyword Optimization</td>
+                        <td class="highlight-col"><span class="compare-yes">✓ AI-Powered</span></td>
+                        <td class="muted-col"><span class="compare-partial">~ Subjective</span></td>
+                    </tr>
+                    <tr>
+                        <td>Skill Gap Detection</td>
+                        <td class="highlight-col"><span class="compare-yes">✓ Automated</span></td>
+                        <td class="muted-col"><span class="compare-no">✗ Limited</span></td>
+                    </tr>
+                    <tr>
+                        <td>Multi-Candidate Scoring</td>
+                        <td class="highlight-col"><span class="compare-yes">✓ Built-In</span></td>
+                        <td class="muted-col"><span class="compare-no">✗ Not Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>Free Tier</td>
+                        <td class="highlight-col"><span class="compare-yes">✓ Yes</span></td>
+                        <td class="muted-col"><span class="compare-partial">~ Varies</span></td>
+                    </tr>
+                    <tr>
+                        <td>Analysis History</td>
+                        <td class="highlight-col"><span class="compare-yes">✓ Full History</span></td>
+                        <td class="muted-col"><span class="compare-no">✗ None</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section id="about" class="about-section" aria-label="About ResumeAI">
+        <div class="about-divider"></div>
+        <div class="about-layout fade-in">
+            <div class="about-text">
+                <div class="about-label">About Us</div>
+                <h2 class="about-heading">Built to Bridge the Hiring Gap</h2>
+                <p class="about-desc">ResumeAI is an intelligent resume analysis platform that bridges the gap between job seekers and recruiters — delivering instant, AI-powered insights that matter.</p>
+                <ul class="about-features">
+                    <li><span class="feat-icon">⚡</span> Instant ATS Compatibility Scoring</li>
+                    <li><span class="feat-icon">🔑</span> Smart Keyword Optimization</li>
+                    <li><span class="feat-icon">📝</span> Actionable Resume Feedback</li>
+                    <li><span class="feat-icon">📊</span> Data-Driven Hiring Decisions</li>
+                </ul>
+            </div>
+            <div class="about-card">
+                <div class="mission-card">
+                    <div class="mission-card-icon">🚀</div>
+                    <div class="mission-card-title">Our Mission</div>
+                    <p class="mission-card-text">We believe hiring should be smarter, faster, and fairer. Our mission is to leverage AI to eliminate guesswork from the resume screening process — empowering students to present their best selves and enabling recruiters to make confident, data-driven decisions.</p>
+                    <div class="mission-card-divider"></div>
+                    <p class="mission-card-quote">"Smarter hiring starts with a better resume."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-brand-name">ResumeAI</div>
+                <p class="footer-brand-desc">AI-powered resume analysis for students, job seekers, and recruiters. Optimize resumes, screen candidates, and hire smarter.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-icon" aria-label="Twitter">𝕏</a>
+                    <a href="#" class="footer-social-icon" aria-label="LinkedIn">in</a>
+                    <a href="#" class="footer-social-icon" aria-label="GitHub">⮂</a>
+                    <a href="#" class="footer-social-icon" aria-label="Email">✉</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Product</div>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="switchMode('student')">Student Mode</a></li>
+                    <li><a href="#" onclick="switchMode('recruiter')">Recruiter Mode</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="/history">Analysis History</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Resources</div>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#">ATS Guide</a></li>
+                    <li><a href="#">Resume Tips</a></li>
+                    <li><a href="#" onclick="openFaqModal(); return false;">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Get Started</div>
+                <p class="footer-cta-text">Ready to optimize your resume? Create a free account and start analyzing in seconds.</p>
+                <a href="/signup" class="footer-cta-btn">Sign Up Free →</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 ResumeAI. All rights reserved.</span>
+            <div class="footer-bottom-links">
+                <a href="#" onclick="openLegalModal('privacy'); return false;">Privacy Policy</a>
+                <a href="#" onclick="openLegalModal('terms'); return false;">Terms of Service</a>
+                <a href="#" onclick="openLegalModal('cookie'); return false;">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== FAQ MODAL ========== -->
+    <div class="faq-overlay" id="faq-overlay" onclick="if(event.target===this)closeFaqModal()">
+        <div class="faq-modal">
+            <button class="faq-close" onclick="closeFaqModal()" aria-label="Close">✕</button>
+            <div class="faq-modal-icon">❓</div>
+            <div class="faq-modal-title">Frequently Asked Questions</div>
+            <div class="faq-modal-subtitle">Everything you need to know about ResumeAI</div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Is ResumeAI free to use? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">Yes! ResumeAI offers one free resume analysis for anonymous users without signing up. After that, you’ll need to create a free account to continue using the platform. There are no paid tiers — signing up is completely free.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">How does the resume analysis work? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">Upload your resume (PDF or DOCX), select your target role, and our AI analyzes it against ATS systems. You’ll receive an ATS compatibility score, keyword optimization suggestions, skill gap identification, and actionable feedback — all in seconds.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">What file formats are supported? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">ResumeAI supports PDF (.pdf) and Word (.docx) file formats. The maximum file size is 5MB per resume.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">What is the difference between Student Mode and Recruiter Mode? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner"><strong>Student Mode</strong> helps job seekers optimize their resume for ATS compatibility with AI-powered feedback tailored to specific roles. <strong>Recruiter Mode</strong> lets hiring teams upload multiple resumes and score candidates against a job description for fast, data-driven screening.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Is my resume data secure? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">Absolutely. Your uploaded resumes are processed securely and are not stored permanently. We prioritize your privacy and never share your data with third parties.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Can I view my past analysis results? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">Yes! Once you create an account and log in, all your analysis results are saved and accessible from the Analysis History page. You can revisit any past analysis at any time.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">What AI technology does ResumeAI use? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">ResumeAI uses advanced deep learning models via the HuggingFace API for intelligent resume analysis, keyword matching, and role-specific optimization. The recruiter mode uses a custom skill-extraction and scoring algorithm.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Do I need to create an account to use it? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">You can try one free analysis without an account. After that, a free account is required to continue. Creating an account also unlocks features like analysis history, comparisons, and more.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PRIVACY POLICY MODAL ========== -->
+    <div class="faq-overlay" id="privacy-overlay" onclick="if(event.target===this)closeLegalModal('privacy')">
+        <div class="faq-modal">
+            <button class="faq-close" onclick="closeLegalModal('privacy')" aria-label="Close">✕</button>
+            <div class="faq-modal-icon">🔒</div>
+            <div class="faq-modal-title">Privacy Policy</div>
+            <div class="faq-modal-subtitle">Last updated: March 11, 2026</div>
+
+            <div class="faq-item open">
+                <button class="faq-question" onclick="toggleFaq(this)">1. Introduction <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">Welcome to ResumeAI. We are committed to protecting your privacy and being transparent about how we handle your data. This policy explains what information we collect, how we use it, and your rights regarding your data.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">2. Information We Collect <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner"><strong>Account Information:</strong> Email address and encrypted password when you create an account.<br><br><strong>Resume Data:</strong> Resume files (PDF/DOCX) you upload for analysis. These are processed temporarily and are not stored permanently.<br><br><strong>Analysis History:</strong> If you have an account, we store the results of your resume analyses so you can review them later.<br><br><strong>Usage Data:</strong> Basic session cookies to keep you logged in.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">3. How We Use Your Information <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">• To analyze your resume and provide AI-powered feedback, ATS scoring, and optimization suggestions.<br>• To authenticate your account and maintain your login session.<br>• To store your analysis history for logged-in users.<br>• To improve the quality and performance of our service.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">4. AI Processing <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">Your resume text may be sent to third-party AI APIs (such as HuggingFace) for analysis. This processing is done in real-time, and the AI provider does not retain your resume data after processing. We do not use your resume data to train AI models.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">5. Data Ownership <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner"><strong>You retain full ownership of your uploaded resumes.</strong> ResumeAI does not claim any rights to your documents. We will never sell, distribute, share, or monetize your resume data in any way.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">6. Data Storage & Security <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">• Uploaded resumes are processed in memory and are not stored permanently on our servers.<br>• Account passwords are securely hashed and never stored in plain text.<br>• We use industry-standard security practices to protect your information.<br>• Analysis results for logged-in users are stored securely and associated with your account.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">7. Data Sharing <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">We <strong>do not</strong> sell, trade, or rent your personal data to third parties. We only share data with:<br><br><strong>AI API providers</strong> — solely for the purpose of processing your resume analysis (data is not retained by providers).<br><strong>Law enforcement</strong> — only if legally required to comply with applicable laws.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">8. Your Rights <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">• Access, correct, or delete your account and associated data at any time.<br>• Use Recruiter Mode anonymously without creating an account.<br>• Request information about what data we store about you.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">9. Contact Us <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">If you have any questions about this Privacy Policy, please contact us at <strong>support@resumeai.app</strong>.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TERMS OF SERVICE MODAL ========== -->
+    <div class="faq-overlay" id="terms-overlay" onclick="if(event.target===this)closeLegalModal('terms')">
+        <div class="faq-modal">
+            <button class="faq-close" onclick="closeLegalModal('terms')" aria-label="Close">✕</button>
+            <div class="faq-modal-icon">📋</div>
+            <div class="faq-modal-title">Terms of Service</div>
+            <div class="faq-modal-subtitle">Last updated: March 11, 2026</div>
+
+            <div class="faq-item open">
+                <button class="faq-question" onclick="toggleFaq(this)">1. Acceptance of Terms <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">By accessing or using ResumeAI ("the Service"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">2. Description of Service <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner"><strong>Student Mode:</strong> Upload a resume and target role to receive ATS compatibility scores, keyword analysis, and optimization feedback. Requires a free account after the first analysis.<br><br><strong>Recruiter Mode:</strong> Upload multiple candidate resumes with a job description to score and rank candidates. Available for anonymous use.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">3. User Accounts <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">• You may create a free account using your email and a password.<br>• You are responsible for keeping your login credentials secure.<br>• You must provide accurate information when creating an account.<br>• We reserve the right to suspend accounts that violate these terms.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">4. Acceptable Use <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">You agree <strong>not</strong> to:<br>• Upload malicious files, viruses, or harmful content.<br>• Attempt to exploit, hack, or disrupt the Service.<br>• Use automated scripts or bots without permission.<br>• Upload content that violates the rights of others.<br>• Circumvent rate limits or security measures.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">5. Intellectual Property <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner"><strong>Your Content:</strong> You retain full ownership of all resumes and documents you upload. ResumeAI does not claim any intellectual property rights over your content.<br><br><strong>Our Service:</strong> The ResumeAI platform, branding, design, and underlying technology are the intellectual property of ResumeAI.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">6. AI-Generated Content <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">The feedback, scores, and suggestions provided by ResumeAI are generated by AI and are intended as <strong>guidance only</strong>. We do not guarantee that following our recommendations will result in job interviews or offers. Results may vary based on the ATS system, job market, and individual circumstances.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">7. Free Tier & Usage Limits <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">• Anonymous users receive <strong>one free resume analysis</strong> in Student Mode.<br>• Logged-in users with a free account have unlimited access.<br>• Recruiter Mode is available without account creation.<br>• We may impose rate limits to ensure fair usage.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">8. Limitation of Liability <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">ResumeAI is provided <strong>"as is"</strong> without warranties. We are not liable for:<br>• Inaccuracies in AI-generated analysis or scores.<br>• Service interruptions, downtime, or data loss.<br>• Decisions you make based on our analysis results.<br>• Third-party AI API availability or performance.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">9. Contact Us <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">For questions about these Terms of Service, contact us at <strong>support@resumeai.app</strong>.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== COOKIE POLICY MODAL ========== -->
+    <div class="faq-overlay" id="cookie-overlay" onclick="if(event.target===this)closeLegalModal('cookie')">
+        <div class="faq-modal">
+            <button class="faq-close" onclick="closeLegalModal('cookie')" aria-label="Close">✕</button>
+            <div class="faq-modal-icon">🍪</div>
+            <div class="faq-modal-title">Cookie Policy</div>
+            <div class="faq-modal-subtitle">Last updated: March 11, 2026</div>
+
+            <div class="faq-item open">
+                <button class="faq-question" onclick="toggleFaq(this)">1. What Are Cookies? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">Cookies are small text files stored on your device when you visit a website. They help websites remember your preferences and provide a better user experience.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">2. How We Use Cookies <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">ResumeAI uses a minimal number of cookies, strictly for essential functionality. We do <strong>not</strong> use tracking cookies, advertising cookies, or third-party analytics cookies.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">3. Cookies We Use <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner"><strong>session</strong> — Maintains your login session and authentication state. Duration: Browser session. Type: Essential.<br><br><strong>free_analysis_used</strong> — Tracks whether the anonymous free analysis has been used. Duration: 30 days. Type: Essential.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">4. Essential Cookies <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">All cookies used by ResumeAI are classified as <strong>essential cookies</strong>. They are strictly necessary for the website to function correctly. Without them, you would not be able to log in, maintain a session, or use certain features.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">5. Third-Party Cookies <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">ResumeAI does <strong>not</strong> set any third-party cookies. We do not use Google Analytics, advertising cookies, social media tracking pixels, or performance monitoring cookies.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">6. Managing Cookies <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">You can control cookies through your browser settings. Most browsers allow you to view and delete cookies, block all or third-party cookies, and set preferences for specific websites.<br><br><strong>Note:</strong> Disabling essential cookies may prevent you from logging in or using account features on ResumeAI.</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">7. Contact Us <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">If you have questions about our cookie practices, contact us at <strong>support@resumeai.app</strong>.</div></div>
+            </div>
+        </div>
+    </div>
 
     <!-- ========== AUTH REQUIRED MODAL ========== -->
     <div class="auth-modal-overlay" id="auth-modal">
@@ -1449,6 +2878,36 @@
                 <a href="/signup" class="btn-signup">Sign Up</a>
                 <a href="/login" class="btn-login">Log In</a>
             </div>
+        </div>
+    </div>
+
+    <!-- ========== CHATBOT WIDGET ========== -->
+    <button class="chatbot-fab" id="chatbot-fab" aria-label="Open chat assistant">💬</button>
+    <div class="chatbot-window" id="chatbot-window" role="dialog" aria-label="Chat assistant">
+        <div class="chatbot-header">
+            <div class="chatbot-header-icon">🤖</div>
+            <div class="chatbot-header-text">
+                <div class="chatbot-header-title">ResumeAI Assistant</div>
+                <div class="chatbot-header-subtitle">Ask me anything about this platform</div>
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-msg bot">Hi there! 👋 I'm the <strong>ResumeAI</strong> assistant. Ask me anything about how this platform works, features, pricing, or how to get started!</div>
+        </div>
+        <div class="chat-suggestions">
+            <button class="chat-suggestion-chip">How does it work?</button>
+            <button class="chat-suggestion-chip">What is Student Mode?</button>
+            <button class="chat-suggestion-chip">Is it free?</button>
+            <button class="chat-suggestion-chip">File formats?</button>
+        </div>
+        <div class="chat-typing" id="chatbot-typing">
+            <div class="chat-typing-dot"></div>
+            <div class="chat-typing-dot"></div>
+            <div class="chat-typing-dot"></div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="Ask a question…" autocomplete="off">
+            <button class="chatbot-send-btn" id="chatbot-send" aria-label="Send message">➤</button>
         </div>
     </div>
 
@@ -1821,6 +3280,128 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+        // ========== PAGE LOADER DISMISS ==========
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('page-loader');
+            if (loader) {
+                // Small delay for a polished feel
+                setTimeout(function() {
+                    loader.classList.add('fade-out');
+                    document.body.classList.remove('loading');
+                    // Remove from DOM after transition
+                    loader.addEventListener('transitionend', function() {
+                        loader.remove();
+                    }, { once: true });
+                }, 400);
+            }
+        });
+
+        // ========== CHATBOT WIDGET ==========
+        const chatFab = document.getElementById('chatbot-fab');
+        const chatWindow = document.getElementById('chatbot-window');
+        const chatInput = document.getElementById('chatbot-input');
+        const chatMessages = document.getElementById('chatbot-messages');
+        const chatTyping = document.getElementById('chatbot-typing');
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            chatWindow.classList.toggle('visible', chatOpen);
+            chatFab.classList.toggle('open', chatOpen);
+            chatFab.innerHTML = chatOpen ? '✕' : '💬';
+            if (chatOpen) chatInput.focus();
+        }
+
+        chatFab.addEventListener('click', toggleChat);
+
+        function formatChatReply(text) {
+            return text
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+        }
+
+        function addChatMessage(text, sender) {
+            const msg = document.createElement('div');
+            msg.className = 'chat-msg ' + sender;
+            msg.innerHTML = sender === 'bot' ? formatChatReply(text) : escHtml(text);
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function sendChatMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            addChatMessage(text, 'user');
+            chatInput.value = '';
+
+            // Show typing
+            chatTyping.classList.add('visible');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                const res = await fetch('/chatbot', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+                const data = await res.json();
+
+                // Simulate brief typing delay
+                await new Promise(r => setTimeout(r, 500));
+                chatTyping.classList.remove('visible');
+
+                addChatMessage(data.reply || data.error || 'Sorry, something went wrong.', 'bot');
+            } catch (e) {
+                chatTyping.classList.remove('visible');
+                addChatMessage('Sorry, I could not connect to the server. Please try again.', 'bot');
+            }
+        }
+
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') sendChatMessage();
+        });
+
+        document.getElementById('chatbot-send').addEventListener('click', sendChatMessage);
+
+        // Suggestion chip click
+        document.querySelectorAll('.chat-suggestion-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                chatInput.value = chip.textContent;
+                sendChatMessage();
+            });
+        });
+
+        // ========== FAQ MODAL ==========
+        function openFaqModal() {
+            document.getElementById('faq-overlay').classList.add('visible');
+        }
+        function closeFaqModal() {
+            document.getElementById('faq-overlay').classList.remove('visible');
+        }
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            item.classList.toggle('open');
+        }
+
+        // ========== LEGAL MODALS ==========
+        function openLegalModal(type) {
+            document.getElementById(type + '-overlay').classList.add('visible');
+        }
+        function closeLegalModal(type) {
+            document.getElementById(type + '-overlay').classList.remove('visible');
+        }
+
+        // Close any open modal on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeFaqModal();
+                closeLegalModal('privacy');
+                closeLegalModal('terms');
+                closeLegalModal('cookie');
+            }
+        });
     </script>
 </body>
 </html>

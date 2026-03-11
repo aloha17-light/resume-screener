@@ -456,6 +456,102 @@ def api_compare():
         traceback.print_exc()
         return jsonify({"error": "An internal error occurred during comparison."}), 500
 
+# --- CHATBOT ---
+
+CHATBOT_KNOWLEDGE = [
+    {
+        "keywords": ["what", "resumeai", "about", "this website", "this site", "what is this", "what does this"],
+        "answer": "ResumeAI is an AI-powered resume screening and optimization platform. It has two modes:\n\n• **Student Mode** — Upload your resume, pick a target job role, and get instant ATS-optimized feedback powered by AI.\n• **Recruiter Mode** — Upload candidate resumes, paste a job description, and get skill-match scoring and candidate rankings.\n\nOur goal is to make hiring smarter, faster, and fairer."
+    },
+    {
+        "keywords": ["how", "work", "works", "does it work", "how it works", "process", "use"],
+        "answer": "Here's how ResumeAI works:\n\n1. **Choose your mode** — Student or Recruiter — using the toggle on the homepage.\n2. **Student Mode**: Enter your target job role, upload your resume (PDF/DOCX), and click 'Analyze My Resume'. Our AI scans your resume and gives you a detailed report with strengths, weaknesses, missing keywords, and actionable tips.\n3. **Recruiter Mode**: Paste a job description, upload candidate resumes, and click 'Parse & Score Resumes'. You'll get a ranked table of candidates with match scores and skill breakdowns.\n\nIt's that simple — no setup, no complicated steps!"
+    },
+    {
+        "keywords": ["student", "student mode", "resume analyzer", "analyze", "ats", "feedback"],
+        "answer": "**Student Mode** lets you optimize your resume for ATS (Applicant Tracking Systems).\n\n• Enter your target job role (e.g., Software Engineer, Data Analyst)\n• Upload your resume as PDF or DOCX (max 2MB)\n• Click 'Analyze My Resume'\n• Get a detailed AI report including: Strengths, Weaknesses, Missing Keywords, Actionable Suggestions, and ATS Optimization Tips.\n\nYou get one free analysis without signing up. After that, you'll need to create a free account."
+    },
+    {
+        "keywords": ["recruiter", "recruiter mode", "hiring", "candidate", "score", "rank", "parse"],
+        "answer": "**Recruiter Mode** helps you quickly evaluate candidate resumes against a job description.\n\n• Paste your full job description\n• Upload candidate resumes (PDF/DOCX)\n• Click 'Parse & Score Resumes'\n• Get a results table with: candidate name, email, match score (%), matched skills, and missing skills\n\nCandidates are ranked by skill-match percentage so you can make data-driven hiring decisions."
+    },
+    {
+        "keywords": ["free", "cost", "price", "pricing", "pay", "charge", "subscription"],
+        "answer": "ResumeAI offers **one free resume analysis** for anonymous users without signing up. After that, you'll need to create a free account to continue using the platform. There are no paid tiers — signing up is completely free!"
+    },
+    {
+        "keywords": ["sign up", "signup", "register", "create account", "account"],
+        "answer": "To create an account:\n\n1. Click the **Sign Up** button in the top-right corner of the page\n2. Enter your name, email, and a password (min 6 characters)\n3. You're in! You can now analyze unlimited resumes and access your analysis history.\n\nAlready have an account? Just click **Log In** instead."
+    },
+    {
+        "keywords": ["login", "log in", "sign in"],
+        "answer": "To log in, click the **Log In** link in the top-right corner, enter your email and password, and you'll be taken back to the homepage. Once logged in, you'll see your name in the navbar and can access your analysis history."
+    },
+    {
+        "keywords": ["history", "past", "previous", "old analysis", "my analyses"],
+        "answer": "Once you're logged in, you can access your **Analysis History** from the navbar. It shows all your past resume analyses with timestamps, job roles, and full AI reports. You can also compare your current resume against a previous analysis to track improvements."
+    },
+    {
+        "keywords": ["file", "format", "upload", "pdf", "docx", "size", "type"],
+        "answer": "ResumeAI accepts resumes in **PDF** and **DOCX** formats. The maximum file size is **2MB**. Simply click the upload area or drag & drop your file to get started."
+    },
+    {
+        "keywords": ["feature", "features", "can it do", "capabilities"],
+        "answer": "ResumeAI offers these key features:\n\n📊 **ATS Compatibility Scoring** — See how well your resume passes automated screening\n🎯 **Role-Based Keyword Optimization** — Tailored feedback for your specific target role\n🔍 **Skill Gap Detection** — Find out what skills you're missing\n🤝 **Recruiter Alignment Insights** — Understand what recruiters look for\n⚡ **Instant Candidate Ranking** — Score and rank multiple candidates at once\n📋 **Analysis History** — Track your progress over time"
+    },
+    {
+        "keywords": ["safe", "secure", "privacy", "data", "security"],
+        "answer": "Your privacy matters to us. Uploaded resumes are processed and then immediately deleted from our servers — we don't store your files. Your analysis history is tied to your account and only visible to you. We use secure sessions and rate limiting to protect against abuse."
+    },
+    {
+        "keywords": ["ai", "model", "technology", "powered", "how does the ai", "what ai"],
+        "answer": "ResumeAI uses advanced AI language models to analyze resumes. The AI reads your resume content, compares it against your target job role's requirements, and generates a structured report covering strengths, weaknesses, missing elements, and actionable suggestions — all in seconds."
+    },
+    {
+        "keywords": ["contact", "support", "help", "email us", "reach"],
+        "answer": "For support or feedback, you can reach us through the website. We're constantly improving ResumeAI based on user feedback. If you run into any issues, try refreshing the page or logging out and back in."
+    },
+    {
+        "keywords": ["compare", "comparison", "track", "improve", "progress"],
+        "answer": "Yes! Once you're logged in, you can **compare** a new resume analysis against any of your previous ones. This helps you track improvements and see how your resume has gotten stronger over time. Access this from your Analysis History page."
+    },
+    {
+        "keywords": ["hello", "hi", "hey", "good morning", "good evening", "greetings"],
+        "answer": "Hello! 👋 I'm the ResumeAI assistant. I can help you understand how this platform works, explain features, and guide you through the process. What would you like to know?"
+    },
+    {
+        "keywords": ["thanks", "thank you", "thank", "bye", "goodbye"],
+        "answer": "You're welcome! If you have more questions later, just click the chat icon. Good luck with your resume! 🚀"
+    },
+]
+
+@app.route('/chatbot', methods=['POST'])
+def chatbot():
+    data = request.get_json()
+    if not data or 'message' not in data:
+        return jsonify({"error": "No message provided"}), 400
+
+    user_message = data['message'].strip().lower()
+    if not user_message:
+        return jsonify({"reply": "Please type a question and I'll do my best to help!"})
+
+    # Score each knowledge item by keyword matches
+    best_score = 0
+    best_answer = None
+    for item in CHATBOT_KNOWLEDGE:
+        score = sum(1 for kw in item["keywords"] if kw in user_message)
+        if score > best_score:
+            best_score = score
+            best_answer = item["answer"]
+
+    if best_answer:
+        return jsonify({"reply": best_answer})
+
+    # Fallback
+    return jsonify({
+        "reply": "That's a great question! I can help with topics like:\n\n• How ResumeAI works\n• Student Mode & Recruiter Mode\n• Uploading resumes & file formats\n• Features & capabilities\n• Account signup & login\n• Analysis history & comparisons\n• Privacy & security\n\nTry asking something like: **\"How does Student Mode work?\"** or **\"What file formats are supported?\"**"
+    })
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
