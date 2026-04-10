@@ -686,9 +686,9 @@
         function formatAIOutput(text) {
             let html = text
                 .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-                .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-                .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-                .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+                .replace(/^### (.+)$/gm, (match, p1) => p1.length > 45 ? `<li>${p1}</li>` : `<h3>${p1}</h3>`)
+                .replace(/^## (.+)$/gm, (match, p1) => p1.length > 45 ? `<li>${p1}</li>` : `<h2>${p1}</h2>`)
+                .replace(/^# (.+)$/gm, (match, p1) => p1.length > 45 ? `<li>${p1}</li>` : `<h1>${p1}</h1>`)
                 .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
                 .replace(/^(\d+)\)\s*(.+)$/gm, '<h3>$1) $2</h3>')
                 .replace(/^[\-\*]\s+(.+)$/gm, '<li>$1</li>')
